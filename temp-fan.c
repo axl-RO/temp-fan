@@ -1,10 +1,10 @@
 // Temperature-Based Fan Control using Arduino and DHT11
 #include "DHT.h"
 
-#define DHTPIN 2      // DHT11 data pin connected to digital pin 2
-#define DHTTYPE DHT11 // Define DHT type
-#define FAN_PIN 8     // Fan control pin
-#define LED_PIN 13    // LED indicator
+#define DHTPIN 2
+#define DHTTYPE DHT11
+#define FAN_PIN 8
+#define LED_PIN 13
 
 DHT dht(DHTPIN, DHTTYPE);
 float temperature;
@@ -20,7 +20,7 @@ void setup() {
 }
 
 void loop() {
-  temperature = dht.readTemperature(); // Read temperature in Celsius
+  temperature = dht.readTemperature();
 
   if (isnan(temperature)) {
     Serial.println("Failed to read from DHT sensor!");
@@ -32,14 +32,14 @@ void loop() {
   Serial.println(" °C");
 
   if (temperature >= 30.0) {
-    digitalWrite(FAN_PIN, HIGH); // Turn fan ON
-    digitalWrite(LED_PIN, HIGH); // Turn LED ON
+    digitalWrite(FAN_PIN, HIGH);
+    digitalWrite(LED_PIN, HIGH);
     Serial.println("Fan: ON");
   } else {
-    digitalWrite(FAN_PIN, LOW);  // Turn fan OFF
-    digitalWrite(LED_PIN, LOW);  // Turn LED OFF
+    digitalWrite(FAN_PIN, LOW);
+    digitalWrite(LED_PIN, LOW);
     Serial.println("Fan: OFF");
   }
 
-  delay(2000); // Wait 2 seconds before next reading
+  delay(2000);
 }
